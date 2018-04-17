@@ -13,8 +13,7 @@ public class Rechnungen {
 
     public boolean adieren(int[] zahlen, int maxRechnungen){
         int rechnungen=0;
-        int richtig=0;
-        int falsch=0;
+        int falsch=20;
         boolean returnValue= false;
         while(rechnungen<maxRechnungen){
             int berechnung = 0;
@@ -22,15 +21,14 @@ public class Rechnungen {
             berechnung=sc.nextInt();
             if((zahlen[rechnungen]+zahlen[rechnungen+1])==berechnung){
                 System.out.println("\nRICHTIG!");
-                richtig++;
             }else {
                 System.out.println("\nLeider FALSCH versuch es weiter!");
-                falsch++;
+                falsch--;
             }
             rechnungen++;
         }
 
-        if(((richtig*100)-(falsch*100))<15)
+        if(falsch>18)
             returnValue=true;
 
         return returnValue;
@@ -38,8 +36,7 @@ public class Rechnungen {
 
     public boolean subtrahieren(int[] zahlen, int maxRechnungen){
         int rechnungen=0;
-        int richtig=0;
-        int falsch=0;
+        int falsch=20;
         boolean returnValue=false;
         while(rechnungen<maxRechnungen){
             int berechnung = 0;
@@ -47,15 +44,14 @@ public class Rechnungen {
             berechnung=sc.nextInt();
             if((zahlen[rechnungen]-zahlen[rechnungen+1])==berechnung){
                 System.out.println("\nRICHTIG!");
-                richtig++;
             }else {
                 System.out.println("\nLeider FALSCH versuch es weiter!");
-                falsch++;
+                falsch--;
             }
             rechnungen++;
         }
 
-        if(((richtig*100)-(falsch*100))<15)
+        if(falsch>18)
             returnValue=true;
 
         return returnValue;
@@ -64,7 +60,7 @@ public class Rechnungen {
     public boolean multiplizieren(int[] zahlen, int maxRechnungen){
         int rechnungen=0;
         int richtig=0;
-        int falsch=0;
+        int falsch=20;
         boolean returnValue=false;
         while(rechnungen<maxRechnungen){
             int berechnung = 0;
@@ -72,15 +68,14 @@ public class Rechnungen {
             berechnung=sc.nextInt();
             if((zahlen[rechnungen]*zahlen[rechnungen+1])==berechnung){
                 System.out.println("\nRICHTIG!");
-                richtig++;
             }else {
                 System.out.println("\nLeider FALSCH versuch es weiter!");
-                falsch++;
+                falsch--;
             }
             rechnungen++;
         }
 
-        if(((richtig*100)-(falsch*100))<15)
+        if(falsch>18)
             returnValue=true;
 
         return returnValue;
@@ -88,8 +83,7 @@ public class Rechnungen {
 
     public boolean dividieren(int[] zahlen, int maxRechnungen){
         int rechnungen=0;
-        int richtig=0;
-        int falsch=0;
+        int falsch=20;
         boolean returnValue=false;
         while(rechnungen<maxRechnungen){
             int berechnung = 0;
@@ -99,15 +93,14 @@ public class Rechnungen {
             berechnung=sc.nextInt();
             if((zahlen[rechnungen]/zahlen[rechnungen+1])==berechnung){
                 System.out.println("\nRICHTIG!");
-                richtig++;
             }else {
                 System.out.println("\nLeider FALSCH versuch es weiter!");
-                falsch++;
+                falsch--;
             }
             rechnungen++;
         }
 
-        if(((richtig*100)-(falsch*100))<15)
+        if(falsch>18)
             returnValue=true;
 
         return returnValue;

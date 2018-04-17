@@ -1,11 +1,13 @@
 package at.htl.wels;
 
-import java.sql.SQLOutput;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
 
         int normal=0;
         int zusatz=0;
@@ -24,6 +26,21 @@ public class Main {
         LevelVier levelVier = new LevelVier();
         ZusatzLevel zusatzLevel = new ZusatzLevel();
 
+        int auswahlUser;
+        User user = new User("Max","Mustermann",false,false,false,false);
+
+        System.out.println("Neues Spiel beginnen: 1\nSpiel fortsetzen: 2");
+        Scanner sc2 = new Scanner(System.in);
+        auswahlUser=sc2.nextInt();
+
+        if(auswahlUser==1) {
+
+            user.addUser();
+
+        }else if(auswahlUser==2){
+
+            user.searchUser();
+        }
 
        // if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){
         while (zusatz < maxRechnungenZusatz) {
