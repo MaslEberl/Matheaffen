@@ -7,8 +7,8 @@ public class LevelVier {
     private static int maxRechnungen=20;
     Rechnungen rechnen=new Rechnungen();
 
-    public void levelVierDividieren(int[] zahlen){
-        levelGeschafft=  rechnen.dividieren(zahlen,maxRechnungen);
+    public void levelVierDividieren(){
+        levelGeschafft=  rechnen.dividieren(maxRechnungen);
         if(levelGeschafft) {
             System.out.println("\nDas Level wurde erfolgreich beendet! Gut gemacht");
         } else

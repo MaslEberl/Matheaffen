@@ -72,7 +72,7 @@ public class Main {
         }else if(auswahl==3) {
             levelDrei.levelDreiMultiplizieren(zufallsZahlenNormal);
         }else if(auswahl==4){
-            levelVier.levelVierDividieren(zufallsZahlenNormal);
+            levelVier.levelVierDividieren();
         }
 
         /*if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){

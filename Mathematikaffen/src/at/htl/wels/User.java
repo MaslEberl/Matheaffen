@@ -12,8 +12,8 @@ public class User implements Serializable{
     boolean levelZwei;
     boolean levelDrei;
     boolean levelVier;
-
     private ArrayList<User> userData = new ArrayList<>();
+
 
     public User(String username, String passwort, boolean levelEins, boolean levelZwei, boolean levelDrei, boolean levelVier) {
         this.username = username;
