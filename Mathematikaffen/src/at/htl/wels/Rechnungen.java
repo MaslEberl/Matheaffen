@@ -7,9 +7,7 @@ public class Rechnungen {
     public Rechnungen() {
     }
 
-
     Scanner sc = new Scanner(System.in);
-
 
     public boolean adieren(int[] zahlen, int maxRechnungen){
         int rechnungen=0;
@@ -273,110 +271,110 @@ public class Rechnungen {
 
         while(lauf<maxRechnungen) {
 
-                if (zufallsZahl[lauf] == 9) {
-                    int berechnung = 0;
-                    System.out.println(zehnerreihe[lauf] + " : 10 =");
-                    berechnung = sc.nextInt();
-                    if ((zehnerreihe[lauf] / 10 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
+            if (zufallsZahl[lauf] == 9) {
+                int berechnung = 0;
+                System.out.println(zehnerreihe[lauf] + " : 10 =");
+                berechnung = sc.nextInt();
+                if ((zehnerreihe[lauf] / 10 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
 
-                }
-                if (zufallsZahl[lauf] == 8) {
-                    int berechnung = 0;
-                    System.out.println(neunerreihe[lauf] + " : 9 =");
-                    berechnung = sc.nextInt();
-                    if ((neunerreihe[lauf] / 9 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-
-                }
-                if (zufallsZahl[lauf] == 7) {
-                    int berechnung = 0;
-                    System.out.println(achterreihe[lauf] + " : 8 =");
-                    berechnung = sc.nextInt();
-                    if ((achterreihe[lauf] / 8 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-                }
-                if (zufallsZahl[lauf] == 6) {
-                    int berechnung = 0;
-                    System.out.println(siebenerreihe[lauf] + " : 7 =");
-                    berechnung = sc.nextInt();
-                    if ((siebenerreihe[lauf] / 7 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-                }
-                if (zufallsZahl[lauf] == 5) {
-                    int berechnung = 0;
-                    System.out.println(sechserreihe[lauf] + " : 6 =");
-                    berechnung = sc.nextInt();
-                    if ((sechserreihe[lauf] / 6 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-                }
-                if (zufallsZahl[lauf] == 4) {
-                    int berechnung = 0;
-                    System.out.println(fuenferreihe[lauf] + " : 5 =");
-                    berechnung = sc.nextInt();
-                    if ((fuenferreihe[lauf] / 5 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-                }
-                if (zufallsZahl[lauf] == 3) {
-                    int berechnung = 0;
-                    System.out.println(viererreihe[lauf] + " : 4 =");
-                    berechnung = sc.nextInt();
-                    if ((viererreihe[lauf] / 4 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-                }
-                if (zufallsZahl[lauf] == 2) {
-                    int berechnung = 0;
-                    System.out.println(dreierreihe[lauf] + " : 3 =");
-                    berechnung = sc.nextInt();
-                    if ((dreierreihe[lauf] / 3 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-                }
-                if (zufallsZahl[lauf] == 1) {
-                    int berechnung = 0;
-                    System.out.println(zweierreihe[lauf] + " : 2 =");
-                    berechnung = sc.nextInt();
-                    if ((zweierreihe[lauf] / 2 == berechnung)) {
-                        System.out.println("\nRICHTIG!");
-                    } else {
-                        System.out.println("\nLeider Falsch!!");
-                        falsch--;
-                    }
-
-                }
-                lauf++;
             }
+            if (zufallsZahl[lauf] == 8) {
+                int berechnung = 0;
+                System.out.println(neunerreihe[lauf] + " : 9 =");
+                berechnung = sc.nextInt();
+                if ((neunerreihe[lauf] / 9 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+
+            }
+            if (zufallsZahl[lauf] == 7) {
+                int berechnung = 0;
+                System.out.println(achterreihe[lauf] + " : 8 =");
+                berechnung = sc.nextInt();
+                if ((achterreihe[lauf] / 8 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+            }
+            if (zufallsZahl[lauf] == 6) {
+                int berechnung = 0;
+                System.out.println(siebenerreihe[lauf] + " : 7 =");
+                berechnung = sc.nextInt();
+                if ((siebenerreihe[lauf] / 7 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+            }
+            if (zufallsZahl[lauf] == 5) {
+                int berechnung = 0;
+                System.out.println(sechserreihe[lauf] + " : 6 =");
+                berechnung = sc.nextInt();
+                if ((sechserreihe[lauf] / 6 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+            }
+            if (zufallsZahl[lauf] == 4) {
+                int berechnung = 0;
+                System.out.println(fuenferreihe[lauf] + " : 5 =");
+                berechnung = sc.nextInt();
+                if ((fuenferreihe[lauf] / 5 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+            }
+            if (zufallsZahl[lauf] == 3) {
+                int berechnung = 0;
+                System.out.println(viererreihe[lauf] + " : 4 =");
+                berechnung = sc.nextInt();
+                if ((viererreihe[lauf] / 4 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+            }
+            if (zufallsZahl[lauf] == 2) {
+                int berechnung = 0;
+                System.out.println(dreierreihe[lauf] + " : 3 =");
+                berechnung = sc.nextInt();
+                if ((dreierreihe[lauf] / 3 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+            }
+            if (zufallsZahl[lauf] == 1) {
+                int berechnung = 0;
+                System.out.println(zweierreihe[lauf] + " : 2 =");
+                berechnung = sc.nextInt();
+                if ((zweierreihe[lauf] / 2 == berechnung)) {
+                    System.out.println("\nRICHTIG!");
+                } else {
+                    System.out.println("\nLeider Falsch!!");
+                    falsch--;
+                }
+
+            }
+            lauf++;
+        }
 
         if(falsch>18)
             returnValue=true;
