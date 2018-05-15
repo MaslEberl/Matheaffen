@@ -12,6 +12,11 @@ public class User implements Serializable{
     private boolean levelDrei;
     private boolean levelVier;
 
+    LevelEins eins = new LevelEins();
+    LevelZwei zwei = new LevelZwei();
+    LevelDrei drei = new LevelDrei();
+    LevelVier vier = new LevelVier();
+
     private ArrayList<User> userData = new ArrayList<>();
 
 
@@ -26,7 +31,8 @@ public class User implements Serializable{
 
 
     //anlegen eines neuen Benutzers
-    public void addUser() throws IOException {
+    public String[] addUser() throws IOException {
+        userData=load();
         String username;
         String passwort;
         String[] userDataTemp= new String[2];
@@ -39,59 +45,41 @@ public class User implements Serializable{
         userData.add(new User(username,passwort,false,false,false,false));
 
         save(userData);
+        return userDataTemp;
     }
 
-    public void searchUser() throws IOException {
-        userData=load();
+    public String[] searchUser() throws IOException {
+        userData = load();
         String usernameSearch;
         String passwortSearch;
-        String[] userDataTemp= new String[2];
-        boolean userLogin=true;
+        String[] userDataTemp = new String[2];
+        boolean userLogin = true;
         String[] usernamePasswordArray = new String[100];
-        int username=0;
-        int password = 1;
-        int loginVersuch=0;
-        int loginVersuchFehler=0;
+        int usernameIndex = 0;
+        int passwordIndex = 1;
+        int loginVersuch = 0;
 
-        //Solange keine 3 Versuche getätigt wurden und der Userlogin nicht erfolgreich war, wird ein neuer Versuch gestartet
-        while(loginVersuch<3&&userLogin) {
-            //Username und Passwort mit Hilfe der Methode userLoginData
-            loginVersuchFehler=0;
-            userDataTemp = userLoginData();
-            usernameSearch = userDataTemp[0];
-            passwortSearch = userDataTemp[1];
-
-            //Die bereits vorhandenen User werden aus der CSV gelesen und nur der Username und das Passwort wird zurückgegeben,
-            //um den Login zu ermöglichen!
-            usernamePasswordArray = loadUsernamePasswordFromCSV();
+        usernamePasswordArray = loadUsernamePasswordFromCSV();
+        userDataTemp = userLoginData();
+        usernameSearch = userDataTemp[0];
+        passwortSearch = userDataTemp[1];
 
 
-            //es wird das usernamePasswordArray durchlaufen, da dort nur Username und Passwort drinen stehen
-            while (userLogin &&loginVersuchFehler==0) {
-                //wenn der Username oder das Passwort nicht in dem usernamePasswordArray vorkommt, wird ein loginVersuchFehler protokolliert
-                if (!(((usernamePasswordArray[username]).equals(usernameSearch)) && ((usernamePasswordArray[password]).equals(passwortSearch)))){
-                    //wenn alles falsch ist, exestiert der User nicht, bzw ist das Passwort ODER der Username falsch
-                    System.out.println("Username oder Passwort ist falsch!\n");
-                    loginVersuchFehler=1;
-                }
-                //wenn Username und Passwort übereinstimmen, wird die Schleife mit "userLogin=false" abgebrochen
-                else if (((usernamePasswordArray[username]).compareTo(usernameSearch) == 0) && ((usernamePasswordArray[password]).compareTo(passwortSearch) == 0)) {
-                    System.out.println("LOGIN!\n");
-                    userLogin = false;
-                    loginVersuch =3;
-                } else if (usernamePasswordArray[username] != null && loginVersuch<3 && loginVersuchFehler!=1) {
-                    //wenn  das Array zuende ist, keine 3 Loginversuche getätigt wurden und kein Loginfehler protokolliert wurde,
-                    //wird der nächste User mit "username=username+2 & password=password+2" ermittelt
-                    username = username + 2;
-                    password = password + 2;
+
+            while (userLogin) {
+
+                if (usernameSearch.compareTo(usernamePasswordArray[usernameIndex]) == 0) {
+                    if (passwortSearch.compareTo(usernamePasswordArray[passwordIndex]) == 0) {
+                        System.out.println("Login");
+                        userLogin=false;
+                    }
+                } else {
+                    usernameIndex = usernameIndex + 2;
+                    passwordIndex = passwordIndex + 2;
                 }
             }
-            loginVersuch++;
-        }
 
-        if(loginVersuch==3){
-            addUser();
-        }
+        return userDataTemp;
     }
 
 
@@ -184,6 +172,32 @@ public class User implements Serializable{
         return tempList;
     }
 
+    public void updateUser(String currentUsername, String currentPassword){
+
+        String[] s = new String[100];
+        String line;
+        ArrayList<User> tempList = new ArrayList<>();
+
+        //die Arraylist wird aus der UserData.csv eingelesen um so bei jedem Start die jeden User wieder abzuspeichern und nicht
+        //nur den letzten User wie am Anfang
+        try (BufferedReader reader = new BufferedReader(new FileReader("UserData.csv"))){
+
+            while((line=reader.readLine())!=null) {
+
+                s = line.split(";");
+                if(((s[0].compareTo(currentUsername)==0))&&(s[1].compareTo(currentPassword))==0){
+                    tempList.add(new User(currentUsername,currentPassword,eins.methodeIstTrue(),zwei.methodeIstTrue(),drei.methodeIstTrue(),vier.methodeIstTrue()));
+                }else{
+                    tempList.add(new User(s[0], s[1], Boolean.valueOf(s[2]), Boolean.valueOf(s[3]), Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
+                }
+            }
+
+        } catch (IOException ex) {
+            System.err.println(ex.toString());
+        }
+
+        save(tempList);
+    }
 
     //Getter / Setter der Variablen
     public String getUsername() {

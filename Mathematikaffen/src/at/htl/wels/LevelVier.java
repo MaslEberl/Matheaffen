@@ -3,7 +3,7 @@ package at.htl.wels;
 public class LevelVier {
     // Level 4: dividieren 1-50
 
-    private boolean levelGeschafft = false;
+    private static boolean levelGeschafft = false;
     private static int maxRechnungen=20;
     Rechnungen rechnen=new Rechnungen();
 
