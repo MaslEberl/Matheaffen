@@ -70,7 +70,7 @@ public class Main {
         }else if(auswahl==2){
             levelZwei.levelZweiSubdrahieren(zufallsZahlenNormal);
         }else if(auswahl==3) {
-            levelDrei.levelDreiMultiplizieren(zufallsZahlenNormal);
+            levelDrei.levelDreiMultiplizieren();
         }else if(auswahl==4){
             levelVier.levelVierDividieren();
         }

@@ -8,8 +8,8 @@ public class LevelDrei {
     Rechnungen rechnen=new Rechnungen();
 
 
-    public void levelDreiMultiplizieren(int[] zahlen){
-        levelGeschafft= rechnen.multiplizieren(zahlen,maxRechnungen);
+    public void levelDreiMultiplizieren(){
+        levelGeschafft= rechnen.multiplizieren(maxRechnungen);
         if(levelGeschafft) {
             System.out.println("\nDas Level wurde erfolgreich beendet! Gut gemacht");
         } else
