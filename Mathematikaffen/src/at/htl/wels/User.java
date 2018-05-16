@@ -52,7 +52,7 @@ public class User implements Serializable{
         userData = load();
         String usernameSearch;
         String passwortSearch;
-        String[] userDataTemp = new String[2];
+        String[] userDataTemp = new String[3];
         boolean userLogin = true;
         String[] usernamePasswordArray = new String[100];
         int usernameIndex = 0;
@@ -67,17 +67,22 @@ public class User implements Serializable{
 
 
             while (userLogin) {
-
+                if(usernamePasswordArray[usernameIndex]!=null){
                 if (usernameSearch.compareTo(usernamePasswordArray[usernameIndex]) == 0) {
                     if (passwortSearch.compareTo(usernamePasswordArray[passwordIndex]) == 0) {
                         System.out.println("Login");
                         userLogin=false;
+                        userDataTemp[2]="true";
                     }
-                } else {
-                    usernameIndex = usernameIndex + 2;
-                    passwordIndex = passwordIndex + 2;
                 }
-            }
+                usernameIndex = usernameIndex + 2;
+                passwordIndex = passwordIndex + 2;
+            } else{
+                    System.out.println("Username oder Passwort ist falsch!\n");
+                    userLogin=false;
+                    userDataTemp[2]="false";
+                }
+        }
 
         return userDataTemp;
     }
@@ -87,7 +92,7 @@ public class User implements Serializable{
         String usernameSearch;
         String passwortSearch;
         Scanner sc = new Scanner(System.in);
-        String[] s = new String[2];
+        String[] s = new String[3];
 
         //Username und Passwort müssen eigegeben werden
         System.out.println("Username: ");

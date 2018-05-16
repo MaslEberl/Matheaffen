@@ -15,7 +15,8 @@ public class Main {
         int maxRechnungenNormal = 40;
         int maxZahlenbereichNormal =50;
         int[] zufallsZahlenNormal = new int[maxRechnungenNormal];
-        String[] userData = new String[2];
+        String[] userData = new String[3];
+        int loginVersuch = 1;
 
         int maxRechnungenZusatz = 60;
         int maxZahlenbereichZusatz =100;
@@ -39,8 +40,19 @@ public class Main {
             userData=user.addUser();
 
         }else if(auswahlUser==2){
+            userData = user.searchUser();
+            while(userData[2].compareTo("false")==0) {
+                if(loginVersuch==3){
+                    System.out.println("Loginversuch "+loginVersuch+"/3\n");
+                    userData=user.addUser();
+                    userData[2]="true";
+                }else {
+                    System.out.println("Loginversuch "+loginVersuch+"/3\n");
+                    userData = user.searchUser();
 
-            userData=user.searchUser();
+                }
+                loginVersuch++;
+            }
         }
 
        // if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){
@@ -62,26 +74,28 @@ public class Main {
         if(zusatz==60){
             zusatz=0;
         }
-        int auswahl=0;
-        while(auswahl!=5) {
-            System.out.println("Auswahl der Level:");
-            System.out.println("1 für addieren\n2 für subtrahieren\n3 für multiplizieren\n4 für dividieren\n5 um das Programm zu beenden\nIhre Auswahl:");
-            Scanner sc = new Scanner(System.in);
-            auswahl = sc.nextInt();
-            if (auswahl == 1) {
-                levelEins.levelEinsAddieren(zufallsZahlenNormal);
-                user.updateUser(userData[0], userData[1]);
-            } else if (auswahl == 2) {
-                levelZwei.levelZweiSubdrahieren(zufallsZahlenNormal);
-                user.updateUser(userData[0], userData[1]);
-            } else if (auswahl == 3) {
-                levelDrei.levelDreiMultiplizieren();
-                user.updateUser(userData[0], userData[1]);
-            } else if (auswahl == 4) {
-                levelVier.levelVierDividieren();
-                user.updateUser(userData[0], userData[1]);
+
+        if(userData[2].compareTo("true")==0) {
+            int auswahl = 0;
+            while (auswahl != 5) {
+                System.out.println("Auswahl der Level:");
+                System.out.println("1 für addieren\n2 für subtrahieren\n3 für multiplizieren\n4 für dividieren\n5 um das Programm zu beenden\nIhre Auswahl:");
+                Scanner sc = new Scanner(System.in);
+                auswahl = sc.nextInt();
+                if (auswahl == 1) {
+                    levelEins.levelEinsAddieren(zufallsZahlenNormal);
+                    user.updateUser(userData[0], userData[1]);
+                } else if (auswahl == 2) {
+                    levelZwei.levelZweiSubdrahieren(zufallsZahlenNormal);
+                    user.updateUser(userData[0], userData[1]);
+                } else if (auswahl == 3) {
+                    levelDrei.levelDreiMultiplizieren();
+                    user.updateUser(userData[0], userData[1]);
+                } else if (auswahl == 4) {
+                    levelVier.levelVierDividieren();
+                    user.updateUser(userData[0], userData[1]);
+                }
             }
-        }
 
         /*if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){
             if(auswahl==5){
@@ -89,7 +103,7 @@ public class Main {
             }
         }*/
 
-
+        }
 
     }
 }
