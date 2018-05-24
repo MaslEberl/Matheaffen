@@ -1,7 +1,6 @@
 
 
 
-import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -9,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class SandboxFX extends Application {
 
@@ -32,7 +30,7 @@ public class SandboxFX extends Application {
         final ImageView imageView = new ImageView(IMAGE);
         imageView.setViewport(new Rectangle2D(OFFSET_X, OFFSET_Y, WIDTH, HEIGHT));
 
-        final Animation animation = src.SpriteAnimation(
+       /* final Animation animation = src.SpriteAnimation(
                 imageView,
                 Duration.millis(1000),
                 COUNT, COLUMNS,
@@ -41,7 +39,7 @@ public class SandboxFX extends Application {
         );
         animation.setCycleCount(Animation.INDEFINITE);
         animation.play();
-
+*/
         primaryStage.setScene(new Scene(new Group(imageView)));
         primaryStage.show();
     }
