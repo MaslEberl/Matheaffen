@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
+        //variablen zum Verarbeiten der Rückgabewerte / zur Auswertung der Eingabe
         int normal=0;
         int zusatz=0;
 
@@ -28,13 +29,17 @@ public class Main {
         LevelVier levelVier = new LevelVier();
         ZusatzLevel zusatzLevel = new ZusatzLevel();
 
-        int auswahlUser;
+        int auswahlUser=0;
+        int auswahlRechnungen = 0;
+
+
         User user = new User("Max","Mustermann",false,false,false,false);
 
         System.out.println("Neues Spiel beginnen: 1\nSpiel fortsetzen: 2");
         Scanner sc2 = new Scanner(System.in);
         auswahlUser=sc2.nextInt();
 
+        //User Auswahl, ob der User einen vorhandenen User benutzen will, oder einen neuen Benutzer anlegen will
         if(auswahlUser==1) {
 
             userData=user.addUser();
@@ -43,19 +48,21 @@ public class Main {
             userData = user.searchUser();
             while(userData[2].compareTo("false")==0) {
                 if(loginVersuch==3){
+                    //Wenn bereits 3 Loginversuche getätigt wurden und diese fehlgeschlagen sind
+                    //wird der User aufgefordert einen neuen Benutzer anzulegen!
                     System.out.println("Loginversuch "+loginVersuch+"/3\n");
                     userData=user.addUser();
                     userData[2]="true";
                 }else {
+                    //Es wird solange der Login versuch getätigt, bis der 3. Versuch getätigt wurde
+                    //Es wird laufend der Loginversuch ausgegeben (1. 2. & 3.)
                     System.out.println("Loginversuch "+loginVersuch+"/3\n");
                     userData = user.searchUser();
-
                 }
                 loginVersuch++;
             }
         }
 
-       // if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){
         while (zusatz < maxRechnungenZusatz) {
             zufallsZahlenZusatz[zusatz] = (int) (Math.random() * maxZahlenbereichZusatz) + 1;
             zusatz++;
@@ -66,8 +73,7 @@ public class Main {
             normal++;
         }
 
-        //}
-
+        //um das erzeugen der Zufallszahlen bei erneutem Aufruf wieder zufällig zu gestalten
         if(normal==40){
             normal = 0;
         }
@@ -75,33 +81,40 @@ public class Main {
             zusatz=0;
         }
 
+        //Wenn sich der Benutzer eingeloggt oder einen neuen User angelegt hat, kommt er zum eigentlichen Spiel
+
         if(userData[2].compareTo("true")==0) {
-            int auswahl = 0;
-            while (auswahl != 5) {
+            while (auswahlRechnungen != 6) {
                 System.out.println("Auswahl der Level:");
-                System.out.println("1 für addieren\n2 für subtrahieren\n3 für multiplizieren\n4 für dividieren\n5 um das Programm zu beenden\nIhre Auswahl:");
+                System.out.println("1 für addieren\n2 für subtrahieren\n3 für multiplizieren\n4 für dividieren\n5 um das Zusatzlevel zu starten \n6 um das Programm zu beenden\nIhre Auswahl:");
                 Scanner sc = new Scanner(System.in);
-                auswahl = sc.nextInt();
-                if (auswahl == 1) {
+                auswahlRechnungen = sc.nextInt();
+                if (auswahlRechnungen == 1) {
                     levelEins.levelEinsAddieren(zufallsZahlenNormal);
                     user.updateUser(userData[0], userData[1]);
-                } else if (auswahl == 2) {
+                } else if (auswahlRechnungen == 2) {
                     levelZwei.levelZweiSubdrahieren(zufallsZahlenNormal);
                     user.updateUser(userData[0], userData[1]);
-                } else if (auswahl == 3) {
+                } else if (auswahlRechnungen == 3) {
                     levelDrei.levelDreiMultiplizieren();
                     user.updateUser(userData[0], userData[1]);
-                } else if (auswahl == 4) {
+                } else if (auswahlRechnungen == 4) {
                     levelVier.levelVierDividieren();
                     user.updateUser(userData[0], userData[1]);
                 }
             }
-
-        /*if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){
-            if(auswahl==5){
-                zusatzLevel.
+            //Überprüfung, ob das Zusatzlevel freigeschalten wurde!
+            if(levelEins.methodeIstTrue() && levelZwei.methodeIstTrue() && levelDrei.methodeIstTrue() && levelVier.methodeIstTrue()){
+            if(auswahlRechnungen==5){
+                //Wenn freigeschlaten und die Auswahl wurde getätigt, wird das Level gestartet
+                zusatzLevel.levelZusatz(zufallsZahlenZusatz);
             }
-        }*/
+        }else if(auswahlRechnungen==5){
+                //Wenn das Level ausgewählt wird, obwohl es nicht freigeschalten wurde, wird ein Fehler ausgegeben!
+                System.out.println("Das Zusatzlevel wurde noch nicht Freigeschalten!");
+            }
+
+
 
         }
 
