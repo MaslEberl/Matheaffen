@@ -204,11 +204,13 @@ public class User implements Serializable{
          try (BufferedReader reader = new BufferedReader(new FileReader("UserData.csv"))){
              while((line=reader.readLine())!=null) {
                  s = line.split(";");
+                 //die in der CSV vorhandenen Werte werden gespeichert
                  levelEinsWert=Boolean.valueOf(s[2]);
                  levelZweiWert=Boolean.valueOf(s[3]);
                  levelDreiWert=Boolean.valueOf(s[4]);
                  levelVierWert=Boolean.valueOf(s[5]);
 
+                 //sobald der Wert falsch (=nicht geschafft) ist, wird überprüft, ob das Level geschafft wurde!
                  if(!levelEinsWert){
                      levelEinsWert=eins.methodeIstTrue();
                  }
