@@ -190,62 +190,53 @@ public class User implements Serializable{
         return tempList;
     }
 
-    public void updateUser(String currentUsername, String currentPassword){
+     public void updateUser(String currentUsername, String currentPassword){
 
         String[] s = new String[100];
         String line;
+        boolean levelEinsWert;
+         boolean levelZweiWert;
+         boolean levelDreiWert;
+         boolean levelVierWert;
         ArrayList<User> tempList = new ArrayList<>();
+        //die Arraylist wird aus der UserData.csv eingelesen um so bei jedem Start die jeden User wieder abzuspeichern und nicht
+         // nur den letzten User wie am Anfang
+         try (BufferedReader reader = new BufferedReader(new FileReader("UserData.csv"))){
+             while((line=reader.readLine())!=null) {
+                 s = line.split(";");
+                 levelEinsWert=Boolean.valueOf(s[2]);
+                 levelZweiWert=Boolean.valueOf(s[3]);
+                 levelDreiWert=Boolean.valueOf(s[4]);
+                 levelVierWert=Boolean.valueOf(s[5]);
 
-        //die Arraylist wird aus der UserData.csv eingelesen um so bei jedem Start die jeden User wieder abzuspeichern
-        try (BufferedReader reader = new BufferedReader(new FileReader("UserData.csv"))){
+                 if(!levelEinsWert){
+                     levelEinsWert=eins.methodeIstTrue();
+                 }
 
-            while((line=reader.readLine())!=null) {
-                s = line.split(";");
-                //der derzeitige Username und das derzeitige Passwort wurde von der Main übergeben!
-                //sollte der Username und das Passwort mit einem bereits vorhandenen User übereinstimmen
-                //so wird dieser in eine temporäre Arraylist gespeichert
-                if(((s[0].compareTo(currentUsername)==0))&&(s[1].compareTo(currentPassword))==0) {
-                    if (Boolean.valueOf(s[2])&&Boolean.valueOf(s[3])&&Boolean.valueOf(s[4])&&Boolean.valueOf(s[5])) { //1234
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), Boolean.valueOf(s[3]), Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
-                    }else if((Boolean.valueOf(s[2])&&Boolean.valueOf(s[3])&&Boolean.valueOf(s[4]))){ //123
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), Boolean.valueOf(s[3]), Boolean.valueOf(s[4]), vier.methodeIstTrue()));
-                    }else if((Boolean.valueOf(s[2])&&Boolean.valueOf(s[4])&&Boolean.valueOf(s[5]))){ //134
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), zwei.methodeIstTrue(),  Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
-                    }else if( Boolean.valueOf(s[3])&&Boolean.valueOf(s[4])&&Boolean.valueOf(s[5])){ //124
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), Boolean.valueOf(s[3]),  drei.methodeIstTrue(), Boolean.valueOf(s[5])));
-                    }else if( Boolean.valueOf(s[2])&&Boolean.valueOf(s[4])&&Boolean.valueOf(s[5])){ //234
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), Boolean.valueOf(s[3]),  Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
-                    }else if(Boolean.valueOf(s[2])&&Boolean.valueOf(s[3])){ //12
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), Boolean.valueOf(s[3]),  drei.methodeIstTrue(), vier.methodeIstTrue()));
-                    }else if(Boolean.valueOf(s[2])&&Boolean.valueOf(s[4])){ //13
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), zwei.methodeIstTrue(),  Boolean.valueOf(s[4]), vier.methodeIstTrue()));
-                    }else if(Boolean.valueOf(s[2])&&Boolean.valueOf(s[5])){ //14
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), zwei.methodeIstTrue(),  drei.methodeIstTrue(), Boolean.valueOf(s[5])));
-                    }else if(Boolean.valueOf(s[3])&&Boolean.valueOf(s[4])){ //23
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), Boolean.valueOf(s[3]),  Boolean.valueOf(s[4]), vier.methodeIstTrue()));
-                    }else if(Boolean.valueOf(s[3])&&Boolean.valueOf(s[5])){ //24
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), Boolean.valueOf(s[3]),  drei.methodeIstTrue(), Boolean.valueOf(s[5])));
-                    }else if(Boolean.valueOf(s[4])&&Boolean.valueOf(s[5])){ //34
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), zwei.methodeIstTrue(),  Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
-                    }else if(Boolean.valueOf(s[2])){ //1
-                        tempList.add(new User(currentUsername, currentPassword, Boolean.valueOf(s[2]), zwei.methodeIstTrue(),  drei.methodeIstTrue(), vier.methodeIstTrue()));
-                    }else if(Boolean.valueOf(s[3])){ //2
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), Boolean.valueOf(s[3]),  drei.methodeIstTrue(), vier.methodeIstTrue()));
-                    }else if(Boolean.valueOf(s[4])){ //3
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), zwei.methodeIstTrue(),  Boolean.valueOf(s[4]), vier.methodeIstTrue()));
-                    }else if(Boolean.valueOf(s[5])){ //4
-                        tempList.add(new User(currentUsername, currentPassword, eins.methodeIstTrue(), zwei.methodeIstTrue(),  drei.methodeIstTrue(), Boolean.valueOf(s[5])));
-                    }
-                }else{
-                    tempList.add(new User(s[0], s[1], Boolean.valueOf(s[2]), Boolean.valueOf(s[3]), Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
-                }
-            }
+                 if(!levelZweiWert){
+                     levelZweiWert=zwei.methodeIstTrue();
+                 }
 
-        } catch (IOException ex) {
-            System.err.println(ex.toString());
-        }
+                 if(!levelDreiWert){
+                     levelDreiWert=drei.methodeIstTrue();
+                 }
 
-        save(tempList);
+                 if(!levelVierWert){
+                     levelVierWert=vier.methodeIstTrue();
+                 }
+
+                 if(((s[0].compareTo(currentUsername)==0))&&(s[1].compareTo(currentPassword))==0){
+                     tempList.add(new User(currentUsername,currentPassword,levelEinsWert,levelZweiWert,levelDreiWert,levelVierWert));
+                     }else{
+                     tempList.add(new User(s[0], s[1], Boolean.valueOf(s[2]), Boolean.valueOf(s[3]), Boolean.valueOf(s[4]), Boolean.valueOf(s[5])));
+                     }
+             }
+
+             } catch (IOException ex) {
+             System.err.println(ex.toString());
+             }
+
+             save(tempList);
     }
 
     //Getter / Setter der Variablen
