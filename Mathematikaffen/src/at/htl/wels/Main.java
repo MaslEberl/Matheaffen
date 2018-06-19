@@ -1,13 +1,13 @@
 package at.htl.wels;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
-public class Main {
 
-    public static void main(String[] args) throws IOException{
+public class Main{
+
+    public static void main(String[] args) throws IOException {
+
 
         //variablen zum Verarbeiten der Rückgabewerte / zur Auswertung der Eingabe
         int normal=0;
@@ -119,4 +119,5 @@ public class Main {
         }
 
     }
+
 }
